@@ -1,18 +1,10 @@
-/* ── Quiz Panel ── */
-
-/*
-  In quiz mode the layout is:
-    [ECG canvas]  |  [quizPanel]
-  quizPanel sits beside the #ecg containerInner inside .split (flex row).
-  It contains a score row + answer buttons stacked vertically.
-*/
+/* ── Quiz Panel — Vodafone style ── */
 
 .quizPanel {
-  display: none;           /* hidden by default; JS sets display:flex */
+  display: none;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: var(--sp-sm);
   padding: 0;
-  /* flex sibling of #ecg inside .split */
   flex-basis: 14rem;
   min-width: 12rem;
   max-width: 28rem;
@@ -20,94 +12,94 @@
   align-self: stretch;
 }
 
-/* Score row — two counters side by side */
+/* Score row */
 .quizScoreRow {
   display: flex;
-  gap: 0.65rem;
+  gap: var(--sp-sm);
 }
 
+/* Score counter — charcoal institutional panel style */
 .answerCounter {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
-  font-size: 1.3rem;
-  font-weight: 700;
+  gap: var(--sp-xs);
   font-family: var(--font);
-  letter-spacing: -0.02em;
-  background: var(--surface);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  padding: 0.55rem 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  background: var(--voda-charcoal);
+  color: var(--voda-white);
+  border-radius: var(--r-card);
+  padding: 0.65rem var(--sp-sm);
 }
 
-/* Answer buttons container — full width stacked column */
 .quizButtons {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--sp-sm);
   flex-grow: 1;
 }
 
+/* Answer buttons — Primary Red Rectangle (utility style) */
 button.answer {
   font-family: var(--font);
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: var(--radius-md);
-  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--voda-charcoal);
+  border: 1px solid rgba(37,40,43,0.18);
+  border-radius: var(--r-sharp);   /* Vodafone: 2px sharp corners for utility */
+  padding: 0.72rem var(--sp-base);
   width: 100%;
   flex-grow: 1;
-  transition: filter 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  display: none;        /* JS shows/hides based on language */
-  box-shadow: var(--shadow-sm);
+  transition: filter 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+  display: none;
   cursor: pointer;
   text-align: center;
 }
 
 button.answer:hover {
-  filter: saturate(2.5) brightness(0.95);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  filter: saturate(2) brightness(0.92);
+  border-color: var(--voda-red);
 }
 
 button.answer:active {
-  transform: scale(0.97);
-  filter: saturate(5);
+  opacity: 0.88;
+  filter: saturate(4);
 }
 
-/* Colors */
-#button_lt       { background-color: var(--lt); }
-#button_uelt     { background-color: var(--uelt); }
-#button_it       { background-color: var(--it); }
-#button_st       { background-color: var(--st); }
-#button_rt       { background-color: var(--rt); }
-#button_uert     { background-color: var(--uert); }
-#button_enLad    { background-color: var(--lt); }
-#button_enNormal { background-color: var(--it); }
-#button_enRad    { background-color: var(--st); }
+/* Segment colors */
+#button_lt       { background: var(--lt); }
+#button_uelt     { background: var(--uelt); }
+#button_it       { background: var(--it); }
+#button_st       { background: var(--st); }
+#button_rt       { background: var(--rt); }
+#button_uert     { background: var(--uert); }
+#button_enLad    { background: var(--lt); }
+#button_enNormal { background: var(--it); }
+#button_enRad    { background: var(--st); }
 
-/* Score animations */
-#answersCorrect { color: var(--correct); }
-#answersWrong   { color: var(--wrong); }
+/* Score labels */
+#answersCorrect { color: #4caf50; }
+#answersWrong   { color: var(--voda-red); }
 
-.animateCorrect { animation: animation_correct 0.5s ease 1; }
-.animateWrong   { animation: animation_wrong   0.5s ease 1; }
+.animateCorrect { animation: anim_correct 0.5s ease 1; }
+.animateWrong   { animation: anim_wrong   0.5s ease 1; }
 
-@keyframes animation_correct {
-  0%   { color: var(--text-primary); font-size: 1.3rem; }
-  30%  { color: var(--correct);      font-size: 1.45rem; }
-  50%  { color: var(--correct);      font-size: 1.3rem; }
-  100% { color: var(--text-primary); font-size: 1.3rem; }
+@keyframes anim_correct {
+  0%   { color: var(--voda-white); font-size: 1.1rem; }
+  35%  { color: #4caf50;           font-size: 1.25rem; }
+  55%  { color: #4caf50;           font-size: 1.1rem; }
+  100% { color: var(--voda-white); font-size: 1.1rem; }
 }
 
-@keyframes animation_wrong {
-  0%   { color: var(--text-primary); font-size: 1.3rem; }
-  30%  { color: var(--wrong);        font-size: 1.45rem; }
-  50%  { color: var(--wrong);        font-size: 1.3rem; }
-  100% { color: var(--text-primary); font-size: 1.3rem; }
+@keyframes anim_wrong {
+  0%   { color: var(--voda-white); font-size: 1.1rem; }
+  35%  { color: var(--voda-red);   font-size: 1.25rem; }
+  55%  { color: var(--voda-red);   font-size: 1.1rem; }
+  100% { color: var(--voda-white); font-size: 1.1rem; }
 }

@@ -5,24 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Interactive ECG cardiac axis trainer using the Cabrera circle" />
   <title>ECG Axis Trainer</title>
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="theme-color" content="#e60000" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="resources/css/style.css" />
 </head>
 <body>
 
-<!-- ── Header ── -->
+<!-- ── Vodafone Header — white, sticky, red bottom border ── -->
 <header>
   <div id="headerWrapper" class="container">
     <h1>ECG Axis Trainer</h1>
     <nav>
-      <button id="button_cabrera">Cabrera</button>
-      <button id="button_quiz">Quiz</button>
-      <button id="button_about">About</button>
+      <button class="navBtn" id="button_cabrera">Cabrera</button>
+      <button class="navBtn" id="button_quiz">Quiz</button>
+      <button class="navBtn" id="button_about">About</button>
+      <!-- Language segmented control — ghost rectangle group -->
       <div class="langGroup">
         <button class="langButton" id="button_en"  title="English">EN</button>
         <button class="langButton" id="button_de"  title="Deutsch">DE</button>
@@ -33,80 +32,80 @@
   </div>
 </header>
 
+<!-- ── Red Divider Band — Vodafone chapter break ── -->
+<div class="pageBand"></div>
+
 <!-- ── Main ── -->
-<main class="container">
+<main>
+  <div class="container">
 
-  <!-- ── Cabrera mode: circle + ECG side by side ── -->
-  <div class="split">
-    <div id="cabrera" class="containerInner no_highlights">
-      <div id="bigCircle">
-        <div id="lagetyp">Normal Axis&nbsp;45.0°</div>
-        <div id="line"></div>
-        <div id="lineright"></div>
-        <div id="circleDe">
-          <div id="uelt"></div>
-          <div id="lt"></div>
-          <div id="it"></div>
-          <div id="st"></div>
-          <div id="rt"></div>
-          <div id="uert"></div>
-          <div id="nwt"></div>
-          <div class="circleLines de"></div>
-        </div>
-        <div id="circleInt">
-          <div id="enLad"></div>
-          <div id="enNormal"></div>
-          <div id="enRad"></div>
-          <div id="enNwt"></div>
-          <div class="circleLines en"></div>
+    <!-- Cabrera + ECG -->
+    <div class="split">
+      <div id="cabrera" class="containerInner no_highlights">
+        <div id="bigCircle">
+          <div id="lagetyp">Normal Axis&nbsp;45.0°</div>
+          <div id="line"></div>
+          <div id="lineright"></div>
+          <div id="circleDe">
+            <div id="uelt"></div><div id="lt"></div><div id="it"></div>
+            <div id="st"></div><div id="rt"></div><div id="uert"></div>
+            <div id="nwt"></div>
+            <div class="circleLines de"></div>
+          </div>
+          <div id="circleInt">
+            <div id="enLad"></div><div id="enNormal"></div>
+            <div id="enRad"></div><div id="enNwt"></div>
+            <div class="circleLines en"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ECG canvas — shared between Cabrera and Quiz modes -->
-    <div id="ecg" class="containerInner">
-      <canvas id="ecgCanvas"></canvas>
-      <canvas id="gridCanvas"></canvas>
-    </div>
-  </div>
-
-  <!-- ── Quiz mode: answer buttons panel (shown beside ECG via JS) ── -->
-  <div id="quiz" class="quizPanel container">
-
-    <!-- Score row -->
-    <div class="quizScoreRow">
-      <div id="correct" class="answerCounter">
-        <span id="labelCorrect">Correct</span>&nbsp;<span id="answersCorrect">0</span>
-      </div>
-      <div id="wrong" class="answerCounter">
-        <span id="labelWrong">Wrong</span>&nbsp;<span id="answersWrong">0</span>
+      <!-- ECG canvas -->
+      <div id="ecg" class="containerInner">
+        <canvas id="ecgCanvas"></canvas>
+        <canvas id="gridCanvas"></canvas>
       </div>
     </div>
 
-    <!-- Answer buttons -->
-    <div class="quizButtons">
-      <!-- German answers -->
-      <button id="button_lt"   class="answer de">Linkstyp</button>
-      <button id="button_uelt" class="answer de">Überdrehter Linkstyp</button>
-      <button id="button_it"   class="answer de">Indifferenztyp</button>
-      <button id="button_st"   class="answer de">Steiltyp</button>
-      <button id="button_rt"   class="answer de">Rechtstyp</button>
-      <button id="button_uert" class="answer de">Überdrehter Rechtstyp</button>
-      <!-- International answers -->
-      <button id="button_enNormal" class="answer en">Normal Axis</button>
-      <button id="button_enLad"    class="answer en">Left Axis Deviation</button>
-      <button id="button_enRad"    class="answer en">Right Axis Deviation</button>
+    <!-- Quiz panel — JS moves this into .split in quiz mode -->
+    <div id="quiz" class="quizPanel">
+      <div class="quizScoreRow">
+        <div id="correct" class="answerCounter">
+          <span id="labelCorrect">Correct</span>&nbsp;<span id="answersCorrect">0</span>
+        </div>
+        <div id="wrong" class="answerCounter">
+          <span id="labelWrong">Wrong</span>&nbsp;<span id="answersWrong">0</span>
+        </div>
+      </div>
+      <div class="quizButtons">
+        <button id="button_lt"   class="answer de">Linkstyp</button>
+        <button id="button_uelt" class="answer de">Überdrehter Linkstyp</button>
+        <button id="button_it"   class="answer de">Indifferenztyp</button>
+        <button id="button_st"   class="answer de">Steiltyp</button>
+        <button id="button_rt"   class="answer de">Rechtstyp</button>
+        <button id="button_uert" class="answer de">Überdrehter Rechtstyp</button>
+        <button id="button_enNormal" class="answer en">Normal Axis</button>
+        <button id="button_enLad"    class="answer en">Left Axis Deviation</button>
+        <button id="button_enRad"    class="answer en">Right Axis Deviation</button>
+      </div>
     </div>
 
-  </div>
+    <!-- About -->
+    <div id="about">
+      <p id="sectionGeneral"></p>
+      <p id="sectionSources"></p>
+    </div>
 
-  <!-- ── About ── -->
-  <div id="about" class="container">
-    <p id="sectionGeneral"></p>
-    <p id="sectionSources"></p>
-  </div>
-
+  </div><!-- /.container -->
 </main>
+
+<!-- ── Vodafone Footer — charcoal institutional panel ── -->
+<footer>
+  <div class="container footerInner">
+    <span class="footerBrand">&#9632; ECG Axis Trainer</span>
+    <span class="footerMeta">Educational tool for cardiac axis interpretation &mdash; David Schaack</span>
+  </div>
+</footer>
 
 <script type="module" src="resources/js/main.js"></script>
 </body>
