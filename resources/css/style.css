@@ -3,345 +3,317 @@
 @import url("cabrera.css");
 @import url("quiz.css");
 
-/* Reset */
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
+body, h1, h2, h3, p { margin: 0; }
 
-/* Basic Layout */
+html { font-size: 18px; }
 
-body,
-h1,
-h2,
-h3,
-p {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-}
-
-html {
-    font-size: 20px;
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 a {
-    color: var(--link);
-    text-decoration: none;
-    transition: color 0.2s ease;
+  color: var(--link);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
 }
+a:visited { color: var(--link); }
+a:hover   { opacity: 0.75; }
+a:active  { opacity: 0.5; }
 
-a:visited {
-    color: var(--link);
-}
+button { cursor: pointer; }
 
-a:active {
-    color: red;
-}
-
-a:hover {
-    color: var(--activeButton);
-}
-
-/* Page Layout, Utility */
-
-button {
-    cursor: pointer;
-}
-
+/* ── Utility ── */
 .container {
-    margin: 0 auto;
-    width: min(93%, 80rem);
+  margin: 0 auto;
+  width: min(96%, 80rem);
 }
 
 .split {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding: 1rem 1rem;
-    gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 1.25rem 1rem;
+  gap: 1.25rem;
 }
 
 .containerInner {
-    flex-basis: 12rem;
-    min-width: 12rem;
-    max-width: 70rem;
-    flex-grow: 1;
+  flex-basis: 12rem;
+  min-width: 12rem;
+  max-width: 70rem;
+  flex-grow: 1;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  position: relative;
 }
 
 .containerInner2 {
-    flex-basis: 12rem;
-    min-width: 12rem;
-    flex-grow: 1;
+  flex-basis: 12rem;
+  min-width: 12rem;
+  flex-grow: 1;
 }
 
-.text-center {
-    text-align: center;
-}
+.text-center { text-align: center; }
 
 .no_highlights {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-/* Header */
-
+/* ── Header ── */
 header {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  padding: 0.6rem 0;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 #headerWrapper {
-    display: flex;
-    padding: 0rem 1rem;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1.25rem;
+  gap: 1rem;
 }
 
 h1 {
-    font-size: 1.5rem;
-    flex-grow: 1;
-    width: 40%;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  flex-grow: 1;
+  width: 40%;
+  color: var(--text-primary);
+}
+
+/* Heartbeat icon prefix */
+h1::before {
+  content: '♥ ';
+  color: var(--wrong);
+  font-size: 1rem;
 }
 
 nav {
-    flex-grow: 1;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: nowrap;
-    width: 40%;
+  flex-grow: 1;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 40%;
+  justify-content: flex-end;
 }
 
 nav button {
-    width: 20%;
-    height: 100%;
-    font-size: 0.9rem;
-    background-color: white;
-    color: black;
-    border: 0;
-    transition: color 0.2s ease;
+  height: 2rem;
+  padding: 0 0.85rem;
+  font-size: 0.82rem;
+  font-family: var(--font);
+  font-weight: 500;
+  background: transparent;
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease, color 0.15s ease;
+  letter-spacing: -0.01em;
 }
 
-
 nav button:hover {
-    color: var(--activeButton);
+  background: var(--surface2);
 }
 
 nav button:active {
-    color: red;
+  background: var(--border);
 }
 
-nav div {
-    display: flex;
-    width: 40%;
-    gap: 0.4rem;
-    justify-content: end;
+nav .navButtonActive,
+nav button[style*="activeButton"] {
+  color: var(--activeButton) !important;
+  font-weight: 600;
+}
+
+nav div.langGroup {
+  display: flex;
+  gap: 2px;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  border: 1px solid var(--border);
 }
 
 nav .langButton {
-    font-size: 0.7rem;
-    border: 1px solid black;
-    height: 100%;
-    min-width: 1.4rem;
-    max-width: 1.7rem;
-    min-height: 1.4rem;
-    max-height: 1.7rem;
-    padding: 0;
-    flex-grow: 1;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-radius: 6px;
+  height: 1.6rem;
+  min-width: 1.9rem;
+  padding: 0 0.3rem;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 nav .langButton:hover {
-    color: white;
-    background-color: rgb(61, 61, 61);
-    transition: background-color 0.8s ease;
+  background: rgba(0,0,0,0.06);
+  color: var(--text-primary);
 }
 
 .langButtonActive {
-    color: white;
-    background-color: rgb(61, 61, 61);  
+  background: var(--surface) !important;
+  color: var(--activeButton) !important;
+  box-shadow: var(--shadow-sm) !important;
 }
 
-/* ECG */
-
+/* ── ECG Canvas ── */
 #ecgCanvas {
-    display: inline;
-    position: absolute;
+  display: inline;
+  position: absolute;
 }
 
 #gridCanvas {
-    border: 1px solid gray;
-    display: inline;
-    position: absolute;
-    z-index: -1;
+  display: inline;
+  position: absolute;
+  z-index: -1;
+  border-radius: var(--radius-md);
 }
 
-
-/* Cabrera Circle */
-
+/* ── Cabrera Circle ── */
 #bigCircle {
-    width: 100%;
-    height: 100%;
-    border: 1px solid gray;
-    border-radius: 50%;
-    position: relative;
-    z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
 }
 
 .circleLines {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 10;
-    background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+  background-size: cover;
 }
 
-#circleDe {
-    display: none;
-}
+#circleDe  { display: none; }
+#circleEn  { display: none; }
 
-#circleEn {
-    display: none;
-}
-
-.circleLines.de{
-    background-image: url('../images/cabrera.svg');
-}
-
-.circleLines.en{
-    background-image: url('../images/cabreraEn.svg');
-}
+.circleLines.de { background-image: url('../images/cabrera.svg'); }
+.circleLines.en { background-image: url('../images/cabreraEn.svg'); }
 
 #lagetyp {
-    position: absolute;
-    top: 21%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    border: 0;
-    background-color: var(--lt);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0.0rem 0.0rem 0.3rem rgba(0, 0, 0, 0.25);
-    transition: background-color 0.4s ease;
-    overflow: hidden;
-    font-size: 1.2rem;
-    text-align: center;
-    padding: 0.2rem 1rem;
-    z-index: 110;
-    white-space: nowrap;
+  position: absolute;
+  top: 21%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border: none;
+  background-color: var(--lt);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-md);
+  transition: background-color 0.4s ease;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font);
+  letter-spacing: -0.02em;
+  text-align: center;
+  padding: 0.3rem 1.1rem;
+  z-index: 110;
+  white-space: nowrap;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
 }
 
-
-/* About */
-
+/* ── About Section ── */
 #about {
-    display: none;
-    margin-top: 1rem;
-    line-height: 1.5;
+  display: none;
+  margin-top: 1.5rem;
+  line-height: 1.7;
+  padding: 0 0.25rem;
 }
 
 #about h2 {
-    margin: 1.5rem 0rem 1rem 0rem;
-    color: var(--activeButton);
-    font-size: 1.2rem;
+  margin: 1.75rem 0 0.75rem;
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 #about p {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
 }
 
 #sectionContact {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-    gap: 1rem 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  gap: 1rem 3rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 #sectionContact div {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 #sectionContact img {
-    height: 1.5rem;
-    margin-right: 0.8rem;
+  height: 1.4rem;
+  margin-right: 0.7rem;
+  opacity: 0.8;
 }
 
 #sectionGeneral img {
-    height: 1.1rem;
-    vertical-align: middle;
+  height: 1rem;
+  vertical-align: middle;
+  opacity: 0.8;
 }
 
-
-
-/* Media Queries */
-
+/* ── Media Queries ── */
 @media screen and (max-width: 599px) and (orientation: portrait) {
-    #headerWrapper h1 {
-        display: none;
-    }
+  #headerWrapper h1 { display: none; }
 }
 
 @media screen and (max-width: 1000px) and (orientation: landscape) {
-    header {
-        margin-bottom: 0.5rem;
-    }
+  header { padding: 0.4rem 0; }
 }
 
-/* These queries take care of smartphones in portrait-mode which have a high aspect-ratio and therefore can't display the circle and the ecg without scrolling. */
 @media only screen and (orientation: portrait) and (min-aspect-ratio: 55/100) and (max-width: 500px) {
-    .split {
-        padding: 1rem 2rem;
-    }
-
-    header {
-        margin-bottom: 0rem;
-    }
-
+  .split { padding: 1rem 2rem; }
+  header { padding: 0.3rem 0; }
 }
-
 @media only screen and (orientation: portrait) and (min-aspect-ratio: 60/100) and (max-width: 500px) {
-    .split {
-        padding: 1rem 3rem;
-    }
-
-    header {
-        margin-bottom: 0rem;
-    }
+  .split { padding: 1rem 3rem; }
 }
-
-
 @media only screen and (orientation: portrait) and (min-aspect-ratio: 65/100) and (max-width: 500px) {
-    .split {
-        padding: 1rem 4rem;
-    }
-
-    header {
-        margin-bottom: 0rem;
-    }
+  .split { padding: 1rem 4rem; }
 }
-
-
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (min--moz-device-pixel-ratio: 2),
-only screen and (-o-min-device-pixel-ratio: 2/1),
-only screen and (min-device-pixel-ratio: 2),
-only screen and (min-resolution: 192dpi),
-only screen and (min-resolution: 2dppx) {
-
-    html {
-        font-size: 16px;
-    }
-
-    #lagetyp {
-        font-size: 0.8rem;
-    }
-
+       only screen and (min-resolution: 192dpi),
+       only screen and (min-resolution: 2dppx) {
+  html { font-size: 15px; }
+  #lagetyp { font-size: 0.78rem; }
 }
