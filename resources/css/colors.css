@@ -1,24 +1,40 @@
 :root {
-  /* ── Vodafone Brand Tokens ── */
-  --voda-red:        #e60000;
-  --voda-red-dark:   #ac1811;
-  --voda-white:      #ffffff;
-  --voda-charcoal:   #25282b;
-  --voda-grey-body:  #7e7e7e;
-  --voda-grey-form:  #333333;
-  --voda-grey-disabled: #bebebe;
-  --voda-neutral:    #f2f2f2;
-  --voda-blue:       #3860be;
+  /* ── Vercel Design Tokens ── */
+  --v-black:        #171717;
+  --v-white:        #ffffff;
+  --v-gray-900:     #171717;
+  --v-gray-600:     #4d4d4d;
+  --v-gray-500:     #666666;
+  --v-gray-400:     #808080;
+  --v-gray-100:     #ebebeb;
+  --v-gray-50:      #fafafa;
+  --v-link:         #0072f5;
+  --v-focus:        hsla(212, 100%, 48%, 1);
+  --v-badge-bg:     #ebf5ff;
+  --v-badge-text:   #0068d6;
 
-  /* ── Functional Aliases ── */
-  --bg:              var(--voda-neutral);
-  --surface:         var(--voda-white);
-  --text-primary:    var(--voda-charcoal);
-  --text-secondary:  var(--voda-grey-body);
-  --link:            var(--voda-blue);
-  --activeButton:    var(--voda-red);
+  /* Workflow accents — used only for axis type indicators */
+  --v-ship:         #ff5b4f;   /* Ship / Red axis deviation */
+  --v-preview:      #de1d8d;   /* Preview / NW axis */
+  --v-develop:      #0a72ef;   /* Develop / Normal axis */
 
-  /* ── Cabrera segment colors — preserved for JS functionality ── */
+  /* ── Shadow System (signature Vercel technique) ── */
+  --shadow-border:  rgba(0,0,0,0.08) 0px 0px 0px 1px;
+  --shadow-ring:    rgb(235,235,235) 0px 0px 0px 1px;
+  --shadow-card:    rgba(0,0,0,0.08) 0px 0px 0px 1px,
+                    rgba(0,0,0,0.04) 0px 2px 2px,
+                    rgba(0,0,0,0.04) 0px 8px 8px -8px,
+                    #fafafa 0px 0px 0px 1px;
+
+  /* ── Aliases ── */
+  --bg:             var(--v-white);
+  --surface:        var(--v-white);
+  --text-primary:   var(--v-black);
+  --text-secondary: var(--v-gray-600);
+  --link:           var(--v-link);
+  --activeButton:   var(--v-black);
+
+  /* ── Cabrera segment colors — preserved for JS ── */
   --uelt: hsl(19, 68%, 77%);
   --lt:   hsl(232, 100%, 85%);
   --it:   hsl(135, 100%, 73%);
@@ -27,27 +43,28 @@
   --uert: hsl(19, 68%, 77%);
   --nwt:  hsl(17, 64%, 86%);
 
-  --correct: #2a7a2a;
-  --wrong:   var(--voda-red);
+  --correct: #16a34a;
+  --wrong:   var(--v-ship);
 
   /* ── Border Radius Scale ── */
-  --r-sharp:  2px;   /* utility buttons */
-  --r-card:   6px;   /* cards, images */
-  --r-pill:   60px;  /* editorial CTAs */
-  --r-badge:  32px;  /* neutral badge pills */
-  --r-circle: 50%;
+  --r-micro:   2px;
+  --r-subtle:  4px;
+  --r-std:     6px;
+  --r-card:    8px;
+  --r-image:   12px;
+  --r-pill:    9999px;
+  --r-circle:  50%;
 
-  /* ── Spacing Scale (8px base) ── */
-  --sp-xs:   4px;
-  --sp-sm:   8px;
-  --sp-md:   12px;
-  --sp-base: 16px;
-  --sp-lg:   20px;
-  --sp-xl:   24px;
-  --sp-2xl:  32px;
-  --sp-3xl:  38px;
-  --sp-section: 64px;
+  /* ── Spacing (8px base) ── */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  32px;
+  --sp-6:  40px;
+  --sp-7:  80px;
 
   /* ── Font ── */
-  --font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font:  'Geist', 'Inter', Arial, sans-serif;
+  --mono:  'Geist Mono', ui-monospace, SFMono-Regular, 'Roboto Mono', Menlo, monospace;
 }

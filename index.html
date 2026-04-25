@@ -5,15 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Interactive ECG cardiac axis trainer using the Cabrera circle" />
   <title>ECG Axis Trainer</title>
-  <meta name="theme-color" content="#e60000" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Geist font from Vercel's CDN -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Inter as open-source Geist substitute with ligatures -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Override font variables to use our loaded fonts */
+    :root {
+      --font: 'Inter', Arial, sans-serif;
+      --mono: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+    }
+  </style>
+
   <link rel="stylesheet" href="resources/css/style.css" />
 </head>
 <body>
 
-<!-- ── Vodafone Header — white, sticky, red bottom border ── -->
+<!-- ── Header ── -->
 <header>
   <div id="headerWrapper" class="container">
     <h1>ECG Axis Trainer</h1>
@@ -21,7 +33,7 @@
       <button class="navBtn" id="button_cabrera">Cabrera</button>
       <button class="navBtn" id="button_quiz">Quiz</button>
       <button class="navBtn" id="button_about">About</button>
-      <!-- Language segmented control — ghost rectangle group -->
+      <!-- Language switcher — pill badges -->
       <div class="langGroup">
         <button class="langButton" id="button_en"  title="English">EN</button>
         <button class="langButton" id="button_de"  title="Deutsch">DE</button>
@@ -32,18 +44,16 @@
   </div>
 </header>
 
-<!-- ── Red Divider Band — Vodafone chapter break ── -->
-<div class="pageBand"></div>
-
 <!-- ── Main ── -->
 <main>
   <div class="container">
 
     <!-- Cabrera + ECG -->
     <div class="split">
+
       <div id="cabrera" class="containerInner no_highlights">
         <div id="bigCircle">
-          <div id="lagetyp">Normal Axis&nbsp;45.0°</div>
+          <div id="lagetyp">normal&nbsp;·&nbsp;45.0°</div>
           <div id="line"></div>
           <div id="lineright"></div>
           <div id="circleDe">
@@ -65,9 +75,10 @@
         <canvas id="ecgCanvas"></canvas>
         <canvas id="gridCanvas"></canvas>
       </div>
-    </div>
 
-    <!-- Quiz panel — JS moves this into .split in quiz mode -->
+    </div><!-- /.split -->
+
+    <!-- Quiz panel — JS moves into .split when active -->
     <div id="quiz" class="quizPanel">
       <div class="quizScoreRow">
         <div id="correct" class="answerCounter">
@@ -78,12 +89,12 @@
         </div>
       </div>
       <div class="quizButtons">
-        <button id="button_lt"   class="answer de">Linkstyp</button>
-        <button id="button_uelt" class="answer de">Überdrehter Linkstyp</button>
-        <button id="button_it"   class="answer de">Indifferenztyp</button>
-        <button id="button_st"   class="answer de">Steiltyp</button>
-        <button id="button_rt"   class="answer de">Rechtstyp</button>
-        <button id="button_uert" class="answer de">Überdrehter Rechtstyp</button>
+        <button id="button_lt"       class="answer de">Linkstyp</button>
+        <button id="button_uelt"     class="answer de">Überdrehter Linkstyp</button>
+        <button id="button_it"       class="answer de">Indifferenztyp</button>
+        <button id="button_st"       class="answer de">Steiltyp</button>
+        <button id="button_rt"       class="answer de">Rechtstyp</button>
+        <button id="button_uert"     class="answer de">Überdrehter Rechtstyp</button>
         <button id="button_enNormal" class="answer en">Normal Axis</button>
         <button id="button_enLad"    class="answer en">Left Axis Deviation</button>
         <button id="button_enRad"    class="answer en">Right Axis Deviation</button>
@@ -99,11 +110,11 @@
   </div><!-- /.container -->
 </main>
 
-<!-- ── Vodafone Footer — charcoal institutional panel ── -->
+<!-- ── Footer ── -->
 <footer>
   <div class="container footerInner">
-    <span class="footerBrand">&#9632; ECG Axis Trainer</span>
-    <span class="footerMeta">Educational tool for cardiac axis interpretation &mdash; David Schaack</span>
+    <span class="footerBrand">ECG Axis Trainer</span>
+    <span class="footerMeta">An educational tool for cardiac axis interpretation · David Schaack</span>
   </div>
 </footer>
 

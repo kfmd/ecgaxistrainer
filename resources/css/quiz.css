@@ -1,9 +1,9 @@
-/* ── Quiz Panel — Vodafone style ── */
+/* ── Quiz Panel — Vercel style ── */
 
 .quizPanel {
   display: none;
   flex-direction: column;
-  gap: var(--sp-sm);
+  gap: var(--sp-2);
   padding: 0;
   flex-basis: 14rem;
   min-width: 12rem;
@@ -13,66 +13,77 @@
 }
 
 /* Score row */
-.quizScoreRow {
-  display: flex;
-  gap: var(--sp-sm);
-}
+.quizScoreRow { display: flex; gap: var(--sp-2); }
 
-/* Score counter — charcoal institutional panel style */
+/* Score counter — full card shadow, Vercel mono style */
 .answerCounter {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--sp-xs);
-  font-family: var(--font);
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  gap: var(--sp-1);
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-feature-settings: "liga" 1, "tnum" 1;
   text-transform: uppercase;
-  background: var(--voda-charcoal);
-  color: var(--voda-white);
+  letter-spacing: 0.04em;
+  background: var(--v-white);
+  color: var(--v-black);
   border-radius: var(--r-card);
-  padding: 0.65rem var(--sp-sm);
+  padding: 0.6rem var(--sp-2);
+  box-shadow: var(--shadow-card);
 }
 
 .quizButtons {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-sm);
+  gap: var(--sp-1);
   flex-grow: 1;
 }
 
-/* Answer buttons — Primary Red Rectangle (utility style) */
+/* Answer buttons — Vercel card style: white, shadow-border, 8px radius */
 button.answer {
   font-family: var(--font);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--voda-charcoal);
-  border: 1px solid rgba(37,40,43,0.18);
-  border-radius: var(--r-sharp);   /* Vodafone: 2px sharp corners for utility */
-  padding: 0.72rem var(--sp-base);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-feature-settings: "liga" 1;
+  color: var(--v-black);
+  border: none;
+  border-radius: var(--r-card);
+  padding: 0.7rem var(--sp-4);
   width: 100%;
   flex-grow: 1;
-  transition: filter 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
   display: none;
   cursor: pointer;
   text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.12s ease, transform 0.1s ease, filter 0.12s ease;
 }
 
 button.answer:hover {
-  filter: saturate(2) brightness(0.92);
-  border-color: var(--voda-red);
+  filter: saturate(1.8) brightness(0.94);
+  box-shadow:
+    rgba(0,0,0,0.12) 0px 0px 0px 1px,
+    rgba(0,0,0,0.06) 0px 4px 4px,
+    #fafafa 0px 0px 0px 1px;
+  transform: translateY(-1px);
 }
 
 button.answer:active {
-  opacity: 0.88;
-  filter: saturate(4);
+  transform: scale(0.98);
+  filter: saturate(3) brightness(0.9);
 }
 
-/* Segment colors */
+/* Focus ring — accessibility */
+button.answer:focus-visible,
+button.navBtn:focus-visible,
+.langButton:focus-visible {
+  outline: 2px solid var(--v-focus);
+  outline-offset: 2px;
+}
+
 #button_lt       { background: var(--lt); }
 #button_uelt     { background: var(--uelt); }
 #button_it       { background: var(--it); }
@@ -83,23 +94,22 @@ button.answer:active {
 #button_enNormal { background: var(--it); }
 #button_enRad    { background: var(--st); }
 
-/* Score labels */
-#answersCorrect { color: #4caf50; }
-#answersWrong   { color: var(--voda-red); }
+#answersCorrect { color: var(--correct); }
+#answersWrong   { color: var(--v-ship); }
 
 .animateCorrect { animation: anim_correct 0.5s ease 1; }
 .animateWrong   { animation: anim_wrong   0.5s ease 1; }
 
 @keyframes anim_correct {
-  0%   { color: var(--voda-white); font-size: 1.1rem; }
-  35%  { color: #4caf50;           font-size: 1.25rem; }
-  55%  { color: #4caf50;           font-size: 1.1rem; }
-  100% { color: var(--voda-white); font-size: 1.1rem; }
+  0%   { color: var(--v-black); font-size: 0.9rem; }
+  35%  { color: var(--correct); font-size: 1.05rem; }
+  55%  { color: var(--correct); font-size: 0.9rem; }
+  100% { color: var(--v-black); font-size: 0.9rem; }
 }
 
 @keyframes anim_wrong {
-  0%   { color: var(--voda-white); font-size: 1.1rem; }
-  35%  { color: var(--voda-red);   font-size: 1.25rem; }
-  55%  { color: var(--voda-red);   font-size: 1.1rem; }
-  100% { color: var(--voda-white); font-size: 1.1rem; }
+  0%   { color: var(--v-black); font-size: 0.9rem; }
+  35%  { color: var(--v-ship);  font-size: 1.05rem; }
+  55%  { color: var(--v-ship);  font-size: 0.9rem; }
+  100% { color: var(--v-black); font-size: 0.9rem; }
 }
