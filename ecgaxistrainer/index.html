@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive ECG cardiac axis trainer using the Cabrera circle" />
+  <title>ECG Axis Trainer</title>
+
+  <!-- Apple-style meta -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#f5f5f7" />
+
+  <!-- Google Fonts: Inter for a modern, SF-like feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="resources/css/style.css" />
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div id="headerWrapper" class="container">
+    <h1>ECG Axis Trainer</h1>
+    <nav>
+      <button id="button_cabrera">Cabrera</button>
+      <button id="button_quiz">Quiz</button>
+      <button id="button_about">About</button>
+
+      <!-- Language switcher pill -->
+      <div class="langGroup">
+        <button class="langButton" id="button_en"  title="English">EN</button>
+        <button class="langButton" id="button_de"  title="Deutsch">DE</button>
+        <button class="langButton" id="button_es"  title="Español">ES</button>
+        <button class="langButton" id="button_id"  title="Indonesia">ID</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Main ── -->
+<main class="container">
+
+  <!-- Cabrera + ECG side-by-side -->
+  <div class="split">
+
+    <!-- Cabrera Circle -->
+    <div id="cabrera" class="containerInner no_highlights">
+      <div id="bigCircle">
+
+        <!-- Lagetyp display badge -->
+        <div id="lagetyp">Normal Axis&nbsp;45.0°</div>
+
+        <!-- Arrow handle -->
+        <div id="line"></div>
+        <div id="lineright"></div>
+
+        <!-- German circle segments -->
+        <div id="circleDe">
+          <div id="uelt"></div>
+          <div id="lt"></div>
+          <div id="it"></div>
+          <div id="st"></div>
+          <div id="rt"></div>
+          <div id="uert"></div>
+          <div id="nwt"></div>
+          <div class="circleLines de"></div>
+        </div>
+
+        <!-- International circle segments -->
+        <div id="circleInt">
+          <div id="enLad"></div>
+          <div id="enNormal"></div>
+          <div id="enRad"></div>
+          <div id="enNwt"></div>
+          <div class="circleLines en"></div>
+        </div>
+
+      </div>
+    </div><!-- /cabrera -->
+
+    <!-- ECG Canvas -->
+    <div id="ecg" class="containerInner">
+      <canvas id="ecgCanvas"></canvas>
+      <canvas id="gridCanvas"></canvas>
+    </div>
+
+  </div><!-- /split -->
+
+  <!-- ── Quiz ── -->
+  <div id="quiz" class="container">
+    <!-- Score counters -->
+    <div id="correct"  class="answerCounter"><span id="labelCorrect">Correct</span>&nbsp;<span id="answersCorrect">0</span></div>
+    <div id="wrong"    class="answerCounter"><span id="labelWrong">Wrong</span>&nbsp;<span id="answersWrong">0</span></div>
+
+    <!-- German answers -->
+    <button id="button_lt"   class="answer de">Linkstyp</button>
+    <button id="button_uelt" class="answer de">Überdrehter Linkstyp</button>
+    <button id="button_it"   class="answer de">Indifferenztyp</button>
+    <button id="button_st"   class="answer de">Steiltyp</button>
+    <button id="button_rt"   class="answer de">Rechtstyp</button>
+    <button id="button_uert" class="answer de">Überdrehter Rechtstyp</button>
+
+    <!-- International answers -->
+    <button id="button_enNormal" class="answer en">Normal Axis</button>
+    <button id="button_enLad"    class="answer en">Left Axis Deviation</button>
+    <button id="button_enRad"    class="answer en">Right Axis Deviation</button>
+  </div>
+
+  <!-- ── About ── -->
+  <div id="about" class="container">
+    <p id="sectionGeneral"></p>
+    <p id="sectionSources"></p>
+  </div>
+
+</main>
+
+<script type="module" src="resources/js/main.js"></script>
+</body>
+</html>

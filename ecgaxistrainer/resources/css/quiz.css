@@ -1,0 +1,98 @@
+/* ── Quiz ── */
+#quiz {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.6rem;
+  padding: 0.5rem;
+}
+
+.answer {
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  border: none;
+  width: 40%;
+  height: 21%;
+  flex-grow: 1;
+}
+
+button.answer {
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  border: 1px solid rgba(0,0,0,0.08);
+  width: 40%;
+  flex-grow: 1;
+  border-radius: var(--radius-md);
+  transition: filter 0.25s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  display: none;
+  box-shadow: var(--shadow-sm);
+  padding: 0.55rem 0.4rem;
+}
+
+button.answer.en {
+  width: 80%;
+}
+
+button.answer:hover {
+  filter: saturate(3) brightness(0.96);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+button.answer:active {
+  transform: scale(0.97);
+  filter: saturate(5);
+}
+
+.answerCounter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: var(--font);
+  letter-spacing: -0.02em;
+  box-shadow: none;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 0.4rem;
+}
+
+.animateCorrect {
+  animation: animation_correct 0.5s ease 1;
+}
+.animateWrong {
+  animation: animation_wrong 0.5s ease 1;
+}
+
+#answersCorrect { color: var(--correct); }
+#answersWrong   { color: var(--wrong); }
+
+#button_lt    { background-color: var(--lt); }
+#button_uelt  { background-color: var(--uelt); }
+#button_it    { background-color: var(--it); }
+#button_st    { background-color: var(--st); }
+#button_rt    { background-color: var(--rt); }
+#button_uert  { background-color: var(--uert); }
+#button_enLad    { background-color: var(--lt); }
+#button_enNormal { background-color: var(--it); }
+#button_enRad    { background-color: var(--st); }
+
+@keyframes animation_correct {
+  0%   { color: var(--text-primary); font-size: 1.4rem; }
+  30%  { color: var(--correct);      font-size: 1.55rem; }
+  50%  { color: var(--correct);      font-size: 1.4rem; }
+  100% { color: var(--text-primary); font-size: 1.4rem; }
+}
+
+@keyframes animation_wrong {
+  0%   { color: var(--text-primary); font-size: 1.4rem; }
+  30%  { color: var(--wrong);        font-size: 1.55rem; }
+  50%  { color: var(--wrong);        font-size: 1.4rem; }
+  100% { color: var(--text-primary); font-size: 1.4rem; }
+}

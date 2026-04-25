@@ -1,0 +1,31 @@
+:root {
+  /* Cabrera circle segment colors – kept intact for functional JS */
+  --uelt: hsl(19, 68%, 77%);
+  --lt:   hsl(232, 100%, 85%);
+  --it:   hsl(135, 100%, 73%);
+  --st:   hsl(55, 100%, 66%);
+  --rt:   hsl(42, 100%, 66%);
+  --uert: hsl(19, 68%, 77%);
+  --nwt:  hsl(17, 64%, 86%);
+
+  /* Semantic */
+  --correct:      hsl(142, 71%, 38%);
+  --wrong:        hsl(0, 84%, 60%);
+  --activeButton: hsl(211, 100%, 50%);
+  --link:         hsl(211, 100%, 50%);
+
+  /* Apple-style design tokens */
+  --bg:           #f5f5f7;
+  --surface:      #ffffff;
+  --surface2:     #f0f0f2;
+  --border:       rgba(0,0,0,0.10);
+  --text-primary: #1d1d1f;
+  --text-secondary:#6e6e73;
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    20px;
+  --shadow-sm:    0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md:    0 4px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:    0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  --font:         -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+}
